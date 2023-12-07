@@ -25,7 +25,13 @@ function App(){
     //   }, [randQuestion]);
 
     function handleClick(event){
-        console.log(event.target)
+        const userAnswer = parseInt(event.target.innerHTML) 
+        const realAnswer = randQuestion.answer
+        if(userAnswer === realAnswer){
+            alert("yes")
+        }else{
+            console.log("eerror")
+        }
     }
 
 

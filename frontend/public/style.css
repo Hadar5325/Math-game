@@ -24,9 +24,27 @@ body{
     border: 2px solid rgb(111, 89, 154);
     border-radius: 20px;
     cursor: pointer;
+    box-shadow: 10px 10px 10px rgb(186, 192, 194)
 }
 
-.question {
+.option:active {
+    box-shadow: 0 0 0 rgb(205, 47, 47);
+  }
+
+  .question {
     font-size: 3rem;
     padding-top: 3rem;
 }
+
+/* .joinBtn { */
+    /* width: 10em; */
+    /* height: 5ex; */
+    /* background-image: linear-gradient(135deg, #f34079 40%, #fc894d); */
+    /* border: none; */
+    /* border-radius: 5px; */
+    /* font-weight: bold; */
+    /* color: white; */
+    /* cursor: pointer; */
+  /* } */
+  
+  
