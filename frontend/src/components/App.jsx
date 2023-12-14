@@ -1,8 +1,22 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
+import React, { useRef ,useEffect, useState} from "react";
+// import winSound from "../../public/win.mp3"
+// import errorSound from "../../public/error.wav"
 
 function App(){
     const [randQuestion, setRandQuestion] = useState("")
+    const inputRef = useRef(false);
+    const [isShaking, setIsShaking] = useState(false)
+
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            inputRef.current.classList.remove('div-container')
+        }, 1000);
+        setIsShaking(false)
+        return () => clearTimeout(timer);
+      }, [isShaking]);
+
 
     async function getData(){
         try{
@@ -10,7 +24,7 @@ function App(){
             console.log(response.data)
             setRandQuestion(response.data)
         }catch(err){
-            console.log("try3")
+            // console.log("try3")
             console.log(err)
         }
     }
@@ -28,14 +42,20 @@ function App(){
         const userAnswer = parseInt(event.target.innerHTML) 
         const realAnswer = randQuestion.answer
         if(userAnswer === realAnswer){
-            alert("yes")
+            var audio = new Audio('win.mp3');
+            audio.play();
         }else{
-            console.log("eerror")
+            setIsShaking(true)
+            inputRef.current.classList.add('div-container')
+            const audio = new Audio("error.wav")
+            audio.play()
+            console.log("error")
+            
         }
     }
 
-
-    return <div>
+    return (
+    <div ref={inputRef}>
         <div className="question">
             {randQuestion.question}
         </div>
@@ -54,6 +74,7 @@ function App(){
             </button>
         </div>
     </div>
+    )
 }
 
 export default App
